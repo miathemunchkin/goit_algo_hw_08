@@ -197,3 +197,45 @@ def birthdays(_, book: AddressBook):
     upcoming_birthdays = book.get_upcoming_birthdays()
     if upcoming_birthdays:
         return
+
+def main():
+    book = load_data()
+    print("Welcome to the assistant bot!")
+    while True:
+        user_input = input("Enter a command: ")
+        command, *args = user_input.split()
+
+        if command in ["close", "exit"]:
+            print("Good bye!")
+            break
+
+        elif command == "hello":
+            print("How can I help you?")
+
+        elif command == "add":
+            print(add_contact(args, book))
+
+        elif command == "change":
+            print(change_phone(args, book))
+
+        elif command == "phone":
+            print(phone(args, book))
+
+        elif command == "all":
+            print(all_contacts(args, book))
+
+        elif command == "add-birthday":
+            print(add_birthday(args, book))
+
+        elif command == "show-birthday":
+            print(show_birthday(args, book))
+
+        elif command == "birthdays":
+            print(birthdays(args, book))
+
+        else:
+            print("Invalid command.")
+    save_data(book)
+
+if __name__ == "__main__":
+    main()
